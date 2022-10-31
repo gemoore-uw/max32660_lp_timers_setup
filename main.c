@@ -242,7 +242,7 @@ int main(void)
     }
     
     is_mcu_powered_down = FALSE;
-		system_state_t sys_state = POWERED_DOWN_AFE4404;
+		system_state_t sys_state = POWERED_DOWN_MCU_AFE4404;
     NVIC_SetVector(TMR1_IRQn, ContinuousTimer_Handler);
     NVIC_EnableIRQ(TMR1_IRQn);
     while (1) {
