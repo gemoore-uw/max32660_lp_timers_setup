@@ -123,6 +123,10 @@ uint32_t rx_demod_bit_period_us = 1e6;
 void gpio_isr_rx_demod(void *cbdata)
 {
 	static uint32_t running_sum_elapsed_time = 0;
+	
+	//	LED_Toggle(MAX32660_EVSYS_LED);
+//	GPIO_OutToggle(&gpio_out);
+	
 	if(rx_demod_isr_cnt == 0){
 		TMR_SW_Start(MXC_TMR2, 0);
 		running_sum_elapsed_time = 0;
@@ -143,17 +147,24 @@ void gpio_isr_rx_demod(void *cbdata)
 		return;
 	}
 	
+	memmove(&elapsed_time[1], &elapsed_time[0], (MAX_RX_DEMOD_SEQ_BITS-1)*sizeof(uint32_t));
+	elapsed_time[0] = TMR_TO_Elapsed(MXC_TMR2)-running_sum_elapsed_time; //TMR_SW_Stop(MXC_TMR2); //??? TMR_TO_Elapsed(MXC_TMR2)
+	running_sum_elapsed_time = running_sum_elapsed_time + elapsed_time[0];
+//	for(int8_t idx = MAX_RX_DEMOD_SEQ_BITS-1; idx >= 0; idx--){
+//		printf("%d,", elapsed_time[idx]);
+//	}
+//	printf("\n");
+	
 	// Checking the preamble
 	if(RX_DEMOD_PREAMBLE_BITS == rx_demod_isr_cnt){
 		rx_demod_is_preamble_good = TRUE;
-
 		for(int8_t idx = RX_DEMOD_PREAMBLE_BITS-1; idx >= 0; idx--){
 			if(idx > 0){
 				if(rx_demod_sequence_level[idx] == rx_demod_sequence_level[idx-1]){
 					rx_demod_is_preamble_good = FALSE;
 					rx_demod_isr_cnt = 0;
 					TMR_SW_Stop(MXC_TMR2);
-					printf("Bad Preamble at %d|%d and %d|%d\n",idx,(int8_t) rx_demod_sequence_level[idx], idx-1,(int8_t) rx_demod_sequence_level[idx-1]);
+					printf("Bad Preamble at rx_demod_bit_period_us[%d]=%d and rx_demod_bit_period_us[%d]=%d\n",idx,(int8_t) rx_demod_sequence_level[idx], idx-1,(int8_t) rx_demod_sequence_level[idx-1]);
 					for(int8_t idx = MAX_RX_DEMOD_SEQ_BITS-1; idx >= 0; idx--){
 						printf("%d,", (uint8_t)rx_demod_sequence_level[idx]);
 					}
@@ -162,23 +173,18 @@ void gpio_isr_rx_demod(void *cbdata)
 				}
 			}
 		}
-		rx_demod_bit_period_us = round(running_sum_elapsed_time/(float)(RX_DEMOD_PREAMBLE_BITS-1));
-//		printf("\nrx_demod_bit_period_us = %d\n\n", rx_demod_bit_period_us);
+	}
+	
+	if(RX_DEMOD_PREAMBLE_BITS >= rx_demod_isr_cnt){
+		rx_demod_bit_period_us = round(running_sum_elapsed_time/(float)(rx_demod_isr_cnt));
+//		printf("\nrx_demod_bit_period_us = %d| rx_demod_isr_cnt = %d\n\n", rx_demod_bit_period_us, rx_demod_isr_cnt);
 	}
 
-//	LED_Toggle(MAX32660_EVSYS_LED);
-//	GPIO_OutToggle(&gpio_out);
-	memmove(&rx_demod_sequence_level[1], &rx_demod_sequence_level[0], (MAX_RX_DEMOD_SEQ_BITS-1)*sizeof(bool));
+	for(uint8_t idx = 0; idx < round(elapsed_time[0]/((float)rx_demod_bit_period_us)); idx++){
+		memmove(&rx_demod_sequence_level[1], &rx_demod_sequence_level[0], (MAX_RX_DEMOD_SEQ_BITS-1)*sizeof(bool));
+	}
 	rx_demod_sequence_level[0] = (bool)GPIO_InGet(&gpio_rx_demodulate);
 	
-	memmove(&elapsed_time[1], &elapsed_time[0], (MAX_RX_DEMOD_SEQ_BITS-1)*sizeof(uint32_t));
-	elapsed_time[0] = TMR_TO_Elapsed(MXC_TMR2)-running_sum_elapsed_time; //TMR_SW_Stop(MXC_TMR2); //??? TMR_TO_Elapsed(MXC_TMR2)
-	running_sum_elapsed_time = running_sum_elapsed_time + elapsed_time[0];
-	
-//	for(int8_t idx = MAX_RX_DEMOD_SEQ_BITS-1; idx >= 0; idx--){
-//		printf("%d,", elapsed_time[idx]);
-//	}
-//	printf("\n");
 //	for(int8_t idx = MAX_RX_DEMOD_SEQ_BITS-1; idx >= 0; idx--){
 //		printf("%d,", (uint8_t)rx_demod_sequence_level[idx]);
 //	}
