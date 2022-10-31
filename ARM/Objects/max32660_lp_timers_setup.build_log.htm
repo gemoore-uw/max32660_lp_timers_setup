@@ -1,0 +1,147 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.37.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Gregory Moore, University of Washington, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.37.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.37.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      CMSIS_AGDI.dll V1.33.12.0
+Dialog DLL:      TCM.DLL V1.56.1.0
+ 
+<h2>Project:</h2>
+C:\Users\gemoore\Documents\keil_workspace\max32660_lp_timers_setup\ARM\max32660_lp_timers_setup.uvprojx
+Project File Date:  10/30/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'Release'
+assembling startup_max32660.s...
+compiling led.c...
+compiling mxc_assert.c...
+compiling mxc_pins.c...
+compiling mxc_lock.c...
+compiling pb.c...
+compiling nvic_table.c...
+compiling icc.c...
+compiling gpio.c...
+compiling stdio.c...
+compiling mxc_delay.c...
+compiling system_max32660.c...
+compiling tmr_utils.c...
+compiling i2s.c...
+compiling board.c...
+compiling main.c...
+compiling dma.c...
+compiling rtc.c...
+compiling spi.c...
+compiling flc.c...
+compiling spi17y.c...
+compiling spimss.c...
+compiling tmr.c...
+compiling lp.c...
+compiling uart.c...
+compiling mxc_sys.c...
+compiling i2c.c...
+linking...
+Program Size: Code=7508 RO-data=560 RW-data=80 ZI-data=4928  
+".\Objects\max32660_lp_timers_setup.axf" - 0 Error(s), 0 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM.CMSIS.5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: Maxim
+                http://www.mxim.net/microcontroller/pack/Maxim.MAX32660.1.4.0.pack
+                Maxim.MAX32660.1.4.0
+                Maxim Integrated MAX32660 Device Support, Board Support Package and Examples
+   * Component: Board Support Version: 1.4.0
+   * Component: I2C Version: 1.4.0
+   * Component: I2S Version: 1.4.0
+   * Component: SPI Version: 1.4.0
+   * Component: UART Version: 1.4.0
+   * Component: Startup Version: 1.4.0
+   * Component: DMA Version: 1.4.0
+   * Component: GPIO Version: 1.4.0
+   * Component: RTC Version: 1.4.0
+   * Component: Timers Version: 1.4.0
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/Device/MAX32660
+  ./RTE/_Release
+  C:/Users/gemoore/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/gemoore/AppData/Local/Arm/Packs/Maxim/MAX32660/1.4.0/Boards/Maxim/MAX32660_EVKIT/Common/EvKit_V1/Include
+  C:/Users/gemoore/AppData/Local/Arm/Packs/Maxim/MAX32660/1.4.0/Boards/Maxim/MAX32660_EVKIT/Common/Include
+  C:/Users/gemoore/AppData/Local/Arm/Packs/Maxim/MAX32660/1.4.0/Libraries/Device/Maxim/MAX32660/Include
+  C:/Users/gemoore/AppData/Local/Arm/Packs/Maxim/MAX32660/1.4.0/Libraries/MAX32660PeriphDriver/Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.6.0
+
+   * Component: Maxim.MAX32660 EVKIT Board Support::BSP:Board Support:1.4.0
+      Source file:   Boards/Maxim/MAX32660_EVKIT/Common/Source/stdio.c
+      Source file:   Boards/Maxim/MAX32660_EVKIT/Common/Source/pb.c
+      Source file:   Boards/Maxim/MAX32660_EVKIT/Common/Source/led.c
+      Source file:   Boards/Maxim/MAX32660_EVKIT/Common/EvKit_V1/Source/board.c
+
+   * Component: Maxim::Communications:I2C:1.4.0
+      Source file:   Libraries/MAX32660PeriphDriver/Source/i2c.c
+
+   * Component: Maxim::Communications:I2S:1.4.0
+      Source file:   Libraries/MAX32660PeriphDriver/Source/i2s.c
+
+   * Component: Maxim::Communications:SPI:1.4.0
+      Source file:   Libraries/MAX32660PeriphDriver/Source/spimss.c
+      Source file:   Libraries/MAX32660PeriphDriver/Source/spi.c
+      Source file:   Libraries/MAX32660PeriphDriver/Source/spi17y.c
+
+   * Component: Maxim::Communications:UART:1.4.0
+      Source file:   Libraries/MAX32660PeriphDriver/Source/uart.c
+
+   * Component: Maxim::Device:Startup:1.4.0
+      Source file:   Libraries/MAX32660PeriphDriver/Source/flc.c
+      Source file:   Libraries/MAX32660PeriphDriver/Source/nvic_table.c
+      Source file:   Libraries/Device/Maxim/MAX32660/Source/ARM/startup_max32660.s
+      Source file:   Libraries/Device/Maxim/MAX32660/Source/system_max32660.c
+      Source file:   Libraries/MAX32660PeriphDriver/Source/lp.c
+      Include file:  Libraries/MAX32660PeriphDriver/Include/mxc_config.h
+      Source file:   Libraries/MAX32660PeriphDriver/Source/icc.c
+      Source file:   Libraries/MAX32660PeriphDriver/Source/mxc_pins.c
+      Source file:   Libraries/MAX32660PeriphDriver/Source/mxc_delay.c
+      Source file:   Libraries/MAX32660PeriphDriver/Source/mxc_assert.c
+      Source file:   Libraries/MAX32660PeriphDriver/Source/mxc_sys.c
+      Source file:   Libraries/MAX32660PeriphDriver/Source/mxc_lock.c
+      Include file:  Libraries/Device/Maxim/MAX32660/Include/max32660.h
+
+   * Component: Maxim::Peripherals:DMA:1.4.0
+      Source file:   Libraries/MAX32660PeriphDriver/Source/dma.c
+
+   * Component: Maxim::Peripherals:GPIO:1.4.0
+      Source file:   Libraries/MAX32660PeriphDriver/Source/gpio.c
+
+   * Component: Maxim::Peripherals:RTC:1.4.0
+      Source file:   Libraries/MAX32660PeriphDriver/Source/rtc.c
+
+   * Component: Maxim::Peripherals:Timers:1.4.0
+      Source file:   Libraries/MAX32660PeriphDriver/Source/tmr.c
+      Source file:   Libraries/MAX32660PeriphDriver/Source/tmr_utils.c
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>

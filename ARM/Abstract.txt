@@ -1,0 +1,10 @@
+The 'SysTick' example is a basic Blinky application using the System Tick Timer
+ to blink LED0 on the evaluation kit board. No
+
+Functionality:
+ - The example configures the system tick timer for either the internal HFIO
+   or the 32kHz external crystal and blinks the LED based on the clock selected.
+ - The #define USE_SYSTEM_CLK determines which clock source is used.
+   - USE_SYSTEM_CLK 0 uses the HFIO for the sys tick.
+   - USE_SYSTEM_CLK 1 uses the external 32kHz xtal for the sys tick.
+ - Status is transmitted via stdout using UART1 at 115,200 baud, 8N1.
