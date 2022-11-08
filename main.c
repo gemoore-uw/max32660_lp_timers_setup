@@ -124,7 +124,7 @@ void gpio_isr_rx_demod(void *cbdata)
 {
 	static uint32_t running_sum_elapsed_time = 0;
 	
-	//	LED_Toggle(MAX32660_EVSYS_LED);
+//	LED_Toggle(MAX32660_EVSYS_LED);
 //	GPIO_OutToggle(&gpio_out);
 	
 	if(rx_demod_isr_cnt == 0){
@@ -308,6 +308,11 @@ int main(void)
 					GPIO_OutSet(&gpio_out);	
 //					ticks = (uint32_t)(((double)us * (double)SystemCoreClock) / divisor);
 //					printf("SysTick Period POWERED_DOWN_MCU_AFE4404  = %d ticks\n", ticks);
+//					if(tx_transmit(...))
+//						GPIO_IntDisable(&gpio_rx_demodulate);
+//					else
+//						GPIO_IntEnable(&gpio_rx_demodulate);
+						
 					mxc_delay(us_delay_calibrated);
 					GPIO_OutClr(&gpio_out);
 					LED_Off(MAX32660_EVSYS_LED);
